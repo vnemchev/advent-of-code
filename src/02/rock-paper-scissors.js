@@ -28,10 +28,11 @@ function rps(moveData) {
         score += movePoints + roundPoints;
     }
 
-    return score;
+    return `Total score: ${score}`;
 }
 
-rps(`A Y
+console.log(
+    rps(`A Y
 B Y
 B Z
 B Z
@@ -2530,4 +2531,5 @@ B Y
 A Y
 C Y
 B Y
-A Y`);
+A Y`),
+);

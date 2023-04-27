@@ -2,17 +2,18 @@ function reorganize(backpacks) {
     const PRIORITIES = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let prioritySum = 0;
 
-    backpacks.split('\n').forEach(b => {
-        const c1 = new Set(b.slice(0, b.length / 2).split(''));
-        const c2 = new Set(b.slice(b.length / 2).split(''));
+    backpacks = backpacks.split('\n');
 
-        console.log(c1);
+    while (backpacks.length) {
+        const [e1, e2, e3] = backpacks.splice(0, 3);
+        const [s1, s2, s3] = [e1, e2, e3].map(e => new Set(e));
 
-        for (const i of c1) {
-            if (!c2.has(i)) continue;
-            prioritySum += PRIORITIES.indexOf(i) + 1;
+        for (const i of s1) {
+            if (s2.has(i) && s3.has(i)) {
+                prioritySum += PRIORITIES.indexOf(i) + 1;
+            }
         }
-    });
+    }
 
     return `Sum of priorities: ${prioritySum}`;
 }
