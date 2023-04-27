@@ -6,8 +6,6 @@ function reorganize(backpacks) {
         const c1 = new Set(b.slice(0, b.length / 2).split(''));
         const c2 = new Set(b.slice(b.length / 2).split(''));
 
-        console.log(c1);
-
         for (const i of c1) {
             if (!c2.has(i)) continue;
             prioritySum += PRIORITIES.indexOf(i) + 1;
