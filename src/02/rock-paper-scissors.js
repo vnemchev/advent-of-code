@@ -1,40 +1,34 @@
 function rps(moveData) {
-    const moves = moveData.split('\n');
+    const moveList = moveData.split('\n');
     const rules = {
-        X: 1,
-        Y: 2,
-        Z: 3,
-        loss: 0,
-        draw: 3,
-        win: 6,
+        A: {
+            X: { movePoints: 3, roundPoints: 0 },
+            Y: { movePoints: 1, roundPoints: 3 },
+            Z: { movePoints: 2, roundPoints: 6 },
+        },
+        B: {
+            X: { movePoints: 1, roundPoints: 0 },
+            Y: { movePoints: 2, roundPoints: 3 },
+            Z: { movePoints: 3, roundPoints: 6 },
+        },
+        C: {
+            X: { movePoints: 2, roundPoints: 0 },
+            Y: { movePoints: 3, roundPoints: 3 },
+            Z: { movePoints: 1, roundPoints: 6 },
+        },
     };
 
     let score = 0;
 
-    for (const move of moves) {
-        const [enemyMove, myMove] = move.split(' ');
+    for (const move of moveList) {
+        const [enemyMove, outcome] = move.split(' ');
 
-        switch (enemyMove) {
-            case 'A':
-                if (myMove == 'X') score += rules['draw'] + rules['X'];
-                else if (myMove == 'Y') score += rules['win'] + rules['Y'];
-                else score += rules['loss'] + rules['Z'];
-                break;
+        const { movePoints, roundPoints } = rules[enemyMove][outcome];
 
-            case 'B':
-                if (myMove == 'X') score += rules['loss'] + rules['X'];
-                else if (myMove == 'Y') score += rules['draw'] + rules['Y'];
-                else score += rules['win'] + rules['Z'];
-                break;
-
-            default:
-                if (myMove == 'X') score += rules['win'] + rules['X'];
-                else if (myMove == 'Y') score += rules['loss'] + rules['Y'];
-                else score += rules['draw'] + rules['Z'];
-                break;
-        }
+        score += movePoints + roundPoints;
     }
-    console.log(score);
+
+    return score;
 }
 
 rps(`A Y
