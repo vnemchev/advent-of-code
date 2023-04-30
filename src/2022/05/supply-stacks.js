@@ -1,28 +1,63 @@
 function supplyStacker(input) {
     const [stackInfo, moveInfo] = input.split('\n\n');
-    generateStacks(stackInfo);
+
+    const stack = generateStacks(stackInfo);
+
+    moveItems(moveInfo, stack);
 }
 
-function generateStacks(input) {
-    const rows = input.split('\n');
+function generateStacks(stackInfo) {
+    const rows = stackInfo.split('\n');
+    const stack = [],
+        tempStack = [];
 
-    rows.pop();
+    const positions = rows
+        .pop()
+        .replaceAll('   ', '')
+        .trim()
+        .split('')
+        .map(Number);
 
-    const stack = [];
+    const posCount = positions[positions.length - 1];
 
-    for (let i = 0; i < rows.length; i++) {
-        stack[i] = [];
-    }
-
-    for (let i = 0; i < rows.length; i++) {
+    for (let i = 0; i < posCount; i++) {
         const currentRow = rows[i];
 
+        tempStack[i] = [];
+        stack[i] = [];
+
         for (let j = 1; j <= currentRow.length; j += 4) {
-            stack[i].push(currentRow[j]);
+            const item = currentRow[j];
+            tempStack[i].push(item);
         }
     }
-    
+
+    for (let i = 0; i < tempStack.length; i++) {
+        const row = tempStack[i];
+
+        for (let j = 0; j < row.length; j++) {
+            stack[j].unshift(row[j]);
+        }
+    }
+
+    stack.forEach(e => console.log(e));
+
     return stack;
+}
+
+function moveItems(moveInfo, stack) {
+    const rows = moveInfo.split('\n');
+
+    // stack.forEach(s => console.log(s));
+
+    for (let i = 0; i < rows.length; i++) {
+        const [, moveCount, , positionFrom, , positionTo] = rows[i].split(' ');
+
+        for (let j = 0; j < moveCount; j++) {
+            const currentItem = stack[positionFrom];
+            // console.log(currentItem);
+        }
+    }
 }
 
 supplyStacker(`    [D]    
