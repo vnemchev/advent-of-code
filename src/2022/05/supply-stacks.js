@@ -2,15 +2,19 @@ function supplyStacker(input) {
     const [stackInfo, moveInfo] = input.split('\n\n');
 
     const stack = generateStack(stackInfo);
-    const modifiedStack = modifyStack(moveInfo, stack);
-    const crates = getTopCrates(modifiedStack);
 
-    return crates;
+    // const modifiedStack1 = modifyStackSingle(moveInfo, stack);
+    const modifiedStack2 = modifyStackMultiple(moveInfo, stack);
+
+    // const crates1 = getTopCrates(modifiedStack1);
+    const crates2 = getTopCrates(modifiedStack2);
+
+    // return crates1;
+    return crates2;
 }
 
 function generateStack(stackInfo) {
     const rows = stackInfo.split('\n');
-
     const positions = rows
         .pop()
         .replaceAll('   ', '')
@@ -29,7 +33,7 @@ function generateStack(stackInfo) {
         tempStack[i] = [];
 
         for (let j = 1; j <= currentRow.length; j += 4) {
-            let item = currentRow[j];
+            const item = currentRow[j];
             tempStack[i].push(item);
         }
     }
@@ -39,7 +43,7 @@ function generateStack(stackInfo) {
         const row = tempStack[i];
 
         for (let j = 0; j < row.length; j++) {
-            let item = row[j];
+            const item = row[j];
             if (item !== ' ') stack[j].unshift(item);
         }
     }
@@ -47,7 +51,7 @@ function generateStack(stackInfo) {
     return stack;
 }
 
-function modifyStack(moveInfo, stack) {
+function modifyStackSingle(moveInfo, stack) {
     const rows = moveInfo.split('\n');
 
     for (let i = 0; i < rows.length; i++) {
@@ -61,6 +65,20 @@ function modifyStack(moveInfo, stack) {
     return stack;
 }
 
+function modifyStackMultiple(moveInfo, stack) {
+    const rows = moveInfo.split('\n');
+
+    for (let i = 0; i < rows.length; i++) {
+        const [, moveCount, , from, , to] = rows[i].split(' ').map(Number);
+        const index = stack[from - 1].length - moveCount;
+        const part = stack[from - 1].splice(index);
+
+        stack[to - 1] = [...stack[to - 1], ...part];
+    }
+
+    return stack;
+}
+
 function getTopCrates(stack) {
     let res = '';
 
@@ -68,6 +86,7 @@ function getTopCrates(stack) {
 
     return res;
 }
+
 console.log(
     supplyStacker(`                [V]     [C]     [M]
 [V]     [J]     [N]     [H]     [V]
