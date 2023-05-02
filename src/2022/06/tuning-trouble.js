@@ -7,10 +7,14 @@ const input = fs.readFileSync(
 );
 
 function signalFinder(input) {
-    for (let i = 3; i < input.length; i++) {
-        const lastFour = input.substring(i - 3, i + 1);
+// for (let i = 3; i < input.length; i++) {
+    for (let i = 13; i < input.length; i++) {
 
-        if (allUnique(lastFour)) {
+        // const lastFour = input.substring(i - 3, i + 1);
+        const lastThirteen = input.substring(i - 13, i + 1);
+
+        // if (allUnique(lastFour)) {
+        if (allUnique(lastThirteen)) {
             return console.log(i + 1);
         }
     }
@@ -33,4 +37,3 @@ signalFinder('zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw');
 // first marker after character 11
 
 signalFinder(input);
-
