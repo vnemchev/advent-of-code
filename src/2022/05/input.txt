@@ -1,75 +1,4 @@
-function supplyStacker(input) {
-    const [stackInfo, moveInfo] = input.split('\n\n');
-
-    const stack = generateStack(stackInfo);
-    const modifiedStack = modifyStack(moveInfo, stack);
-    const crates = getTopCrates(modifiedStack);
-
-    return crates;
-}
-
-function generateStack(stackInfo) {
-    const rows = stackInfo.split('\n');
-
-    const positions = rows
-        .pop()
-        .replaceAll('   ', '')
-        .trim()
-        .split('')
-        .map(Number);
-
-    const posCount = positions[positions.length - 1];
-    const stack = Array.from(Array(posCount), () => []);
-    const tempStack = [];
-
-    // Fill a temp array for easy storage
-    for (let i = 0; i < posCount - 1; i++) {
-        const currentRow = rows[i];
-
-        tempStack[i] = [];
-
-        for (let j = 1; j <= currentRow.length; j += 4) {
-            let item = currentRow[j];
-            tempStack[i].push(item);
-        }
-    }
-
-    // Fill the result array correctly by cycling through the temp one
-    for (let i = 0; i < tempStack.length; i++) {
-        const row = tempStack[i];
-
-        for (let j = 0; j < row.length; j++) {
-            let item = row[j];
-            if (item !== ' ') stack[j].unshift(item);
-        }
-    }
-
-    return stack;
-}
-
-function modifyStack(moveInfo, stack) {
-    const rows = moveInfo.split('\n');
-
-    for (let i = 0; i < rows.length; i++) {
-        const [, moveCount, , from, , to] = rows[i].split(' ').map(Number);
-
-        for (let j = 0; j < moveCount; j++) {
-            stack[to - 1].push(stack[from - 1].pop());
-        }
-    }
-
-    return stack;
-}
-
-function getTopCrates(stack) {
-    let res = '';
-
-    stack.forEach(r => (res += r[r.length - 1]));
-
-    return res;
-}
-console.log(
-    supplyStacker(`                [V]     [C]     [M]
+                [V]     [C]     [M]
 [V]     [J]     [N]     [H]     [V]
 [R] [F] [N]     [W]     [Z]     [N]
 [H] [R] [D]     [Q] [M] [L]     [B]
@@ -580,5 +509,4 @@ move 1 from 8 to 3
 move 1 from 1 to 6
 move 3 from 5 to 7
 move 1 from 9 to 1
-move 1 from 2 to 8`),
-);
+move 1 from 2 to 8
