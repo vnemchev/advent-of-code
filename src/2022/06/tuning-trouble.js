@@ -24,16 +24,4 @@ function allUnique(string) {
     return new Set(string).size === string.length;
 }
 
-signalFinder('bvwbjplbgvbhsrlpgdmjqwftvncz');
-// first marker after character 5
-
-signalFinder('nppdvjthqldpwncqszvftbrmjlhg');
-// first marker after character 6
-
-signalFinder('nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg');
-// first marker after character 10
-
-signalFinder('zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw');
-// first marker after character 11
-
 signalFinder(input);
