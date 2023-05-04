@@ -1,32 +1,60 @@
 function main(input) {
+    // const commands = {
+    //     cd: {
+    //         '/': function () {
+    //             if (fileTree['/'] == undefined) {
+    //                 fileTree['/'] = {};
+    //             }
+    //             currentDir = fileTree['/'];
+    //             return currentDir;
+    //         },
+    //         '..': function (prev) {
+    //             currentDir = fileTree[prev];
+    //         },
+    //     },
+    //     ls: {},
+    // };
+
     const fileTree = {};
 
-    let currentDir = '';
-
-    const commands = {
-        cd: {
-            '/': () => {
-                fileTree['/'] = {};
-                currentDir = '/'
-            },
-            '..': () => {
-                
-            },
-
-        },
-        ls: {},
-    };
+    let currentDir = {},
+        prevDirName = '';
 
     input = input.split('\n');
 
     for (let i = 0; i < input.length; i++) {
         const line = input[i].split(' ');
-        if (line[0] === '$') {
-            let a = commands[line[1]][line[2]];
-            console.log(a());
+
+        if (line.length === 3) {
+            const [, command, dir] = line;
+
+            navigate(dir);
+        } else {
         }
     }
 
+    console.log(fileTree['/']);
+
+    function navigate(dirName) {
+        if (fileTree[dirName] == undefined) {
+            fileTree[dirName] = {};
+        }
+
+        switch (dirName) {
+            case '/':
+                prevDirName = currentDir;
+                currentDir = fileTree[dirName];
+
+                break;
+
+            case '..':
+                break;
+
+            default:
+                break;
+        }
+    }
+    Object.entries(fileTree).forEach(e => console.log(e));
 }
 
 main(`$ cd /
