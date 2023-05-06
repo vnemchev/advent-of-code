@@ -2,17 +2,23 @@ function sonar(input) {
     input = input.split('\n').map(Number);
 
     const inputL = input.length;
-    let result = 0;
+    let total = 0;
 
-    for (let i = 1; i < inputL; i++) {
-        if (input[i] > input[i - 1]) {
-            result++;
-        }
+    for (let i = 0; i < inputL; i++) {
+        if (i == 0) continue;
+        if (i == input.length - 2) break;
+
+        const currentSum = input[i] + input[i + 1] + input[i + 2];
+        const prevSum = input[i - 1] + input[i] + input[i + 1];
+
+        if (currentSum > prevSum) total++;
     }
-    console.log(result);
+
+    return total;
 }
 
-sonar(`169
+console.log(
+    sonar(`169
 150
 158
 163
@@ -2011,4 +2017,5 @@ sonar(`169
 3575
 3576
 3586
-3588`);
+3588`),
+);
