@@ -1,6 +1,7 @@
 function dive(input) {
     let hPosition = 0,
-        depth = 0;
+        depth = 0,
+        aim = 0;
 
     input.split('\n').forEach(r => {
         let [direction, unitCount] = r.split(' ');
@@ -8,13 +9,14 @@ function dive(input) {
 
         switch (direction) {
             case 'up':
-                depth -= unitCount;
+                aim -= unitCount;
                 break;
             case 'down':
-                depth += unitCount;
+                aim += unitCount;
                 break;
             default:
                 hPosition += unitCount;
+                depth += aim * unitCount;
                 break;
         }
     });
