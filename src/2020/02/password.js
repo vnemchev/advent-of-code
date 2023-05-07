@@ -5,10 +5,13 @@ function passPhilosophy(input) {
         const [range, criteria, string] = row.split(' ');
         const [min, max] = range.split('-').map(Number);
         const key = criteria[0];
+        const pos1 = min - 1;
+        const pos2 = max - 1;
 
-        if (isValid(min, max, key, string)) totalValid++;
+        // if (isValid(min, max, key, string)) totalValid++;
+        if (isReallyValid(pos1, pos2, key, string)) totalValid++;
     });
-
+    
     return totalValid;
 }
 
@@ -20,6 +23,13 @@ function isValid(min, max, key, string) {
     }
 
     return total >= min && total <= max;
+}
+
+function isReallyValid(pos1, pos2, key, string) {
+    return (
+        (string[pos1] === key && string[pos2] !== key) ||
+        (string[pos1] !== key && string[pos2] === key)
+    );
 }
 
 console.log(
