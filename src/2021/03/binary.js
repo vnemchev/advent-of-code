@@ -1,25 +1,8 @@
 function binary(input) {
-    const numbers = input.split('\n');
-    const numbersL = numbers.length;
-    const numberL = numbers[0].length;
-
-    /* Good to know: Array.fill() fills with copies by reference.
-    What happened here is every array in my bitGroups was effectively the same.
-
-    new Array(numberL).fill([]); */
-
-    const bitGroups = Array.from(Array(numberL), () => new Array());
-
-    for (let i = 0; i < numbersL; i++) {
-        const number = numbers[i];
-
-        for (let j = 0; j < numberL; j++) {
-            bitGroups[j].push(number[j]);
-        }
-    }
-
     let binGamma = '';
     let binEpsilon = '';
+
+    const bitGroups = createbitGroups(input);
 
     bitGroups.forEach(a => findMostAndLeastCommon(a));
 
@@ -48,6 +31,29 @@ function binary(input) {
             binEpsilon += '0';
         }
     }
+}
+
+function createbitGroups(input) {
+    const numbers = input.split('\n');
+    const numbersL = numbers.length;
+    const numberL = numbers[0].length;
+
+    /* Good to know: Array.fill() fills with copies by reference.
+    What happened here is every array in my bitGroups was effectively the same.
+
+    new Array(numberL).fill([]); */
+
+    const bitGroups = Array.from(Array(numberL), () => new Array());
+
+    for (let i = 0; i < numbersL; i++) {
+        const number = numbers[i];
+
+        for (let j = 0; j < numberL; j++) {
+            bitGroups[j].push(number[j]);
+        }
+    }
+
+    return bitGroups;
 }
 
 console.log(
