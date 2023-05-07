@@ -2,15 +2,19 @@ function repair(input) {
     const numbers = input.split('\n').map(Number);
     const numbersL = numbers.length;
 
-    for (let i = 0; i < numbersL - 1; i++) {
+    for (let i = 0; i < numbersL - 2; i++) {
         const fNum = numbers[i];
 
-        for (let j = i + 1; j < numbersL; j++) {
+        for (let j = i + 1; j < numbersL - 1; j++) {
             const sNum = numbers[j];
 
-            if (fNum + sNum !== 2020) continue;
+            for (let k = j + 1; k < numbersL; k++) {
+                const tNum = numbers[k];
 
-            return fNum * sNum;
+                if (fNum + sNum + tNum == 2020) {
+                    return fNum * sNum * tNum;
+                }
+            }
         }
     }
 }
