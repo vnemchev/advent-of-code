@@ -1,4 +1,4 @@
-function passPhilosophy(input) {
+function passPhilosophy(input: string): number {
     let totalValid = 0;
 
     input.split('\n').forEach(row => {
@@ -11,11 +11,16 @@ function passPhilosophy(input) {
         // if (isValid(min, max, key, string)) totalValid++;
         if (isReallyValid(pos1, pos2, key, string)) totalValid++;
     });
-    
+
     return totalValid;
 }
 
-function isValid(min, max, key, string) {
+function isValid(
+    min: number,
+    max: number,
+    key: string,
+    string: string,
+): boolean {
     let total = 0;
 
     for (const char of string) {
@@ -25,7 +30,12 @@ function isValid(min, max, key, string) {
     return total >= min && total <= max;
 }
 
-function isReallyValid(pos1, pos2, key, string) {
+function isReallyValid(
+    pos1: number,
+    pos2: number,
+    key: string,
+    string: string,
+): boolean {
     return (
         (string[pos1] === key && string[pos2] !== key) ||
         (string[pos1] !== key && string[pos2] === key)
