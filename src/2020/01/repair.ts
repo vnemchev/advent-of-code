@@ -1,4 +1,4 @@
-function repair(input) {
+function repair(input: string): number | undefined {
     const numbers = input.split('\n').map(Number);
     const numbersL = numbers.length;
 
