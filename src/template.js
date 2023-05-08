@@ -1,3 +1,3 @@
-function trajectory(input) {}
+function placeholder(input) {}
 
-console.log(trajectory(``));
+console.log(placeholder(``));
