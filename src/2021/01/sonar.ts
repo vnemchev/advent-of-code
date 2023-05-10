@@ -1,15 +1,15 @@
-function sonar(input) {
-    input = input.split('\n').map(Number);
+function sonar(input: string): number {
+    const signal = input.split('\n').map(Number);
 
-    const inputL = input.length;
+    const signalL = signal.length;
     let total = 0;
 
-    for (let i = 0; i < inputL; i++) {
+    for (let i = 0; i < signalL; i++) {
         if (i == 0) continue;
-        if (i == input.length - 2) break;
+        if (i == signalL - 2) break;
 
-        const currentSum = input[i] + input[i + 1] + input[i + 2];
-        const prevSum = input[i - 1] + input[i] + input[i + 1];
+        const currentSum = signal[i] + signal[i + 1] + signal[i + 2];
+        const prevSum = signal[i - 1] + signal[i] + signal[i + 1];
 
         if (currentSum > prevSum) total++;
     }
