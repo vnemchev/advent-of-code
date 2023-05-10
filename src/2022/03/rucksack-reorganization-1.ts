@@ -1,5 +1,7 @@
-function reorganize(backpacks) {
+function reorganize1(input: string): string {
     const PRIORITIES = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const backpacks = input;
+
     let prioritySum = 0;
 
     backpacks.split('\n').forEach(b => {
@@ -16,7 +18,7 @@ function reorganize(backpacks) {
 }
 
 console.log(
-    reorganize(`RCMRQjLLWGTjnlnZwwnZJRZH
+    reorganize1(`RCMRQjLLWGTjnlnZwwnZJRZH
 qnvfhpSbvSppNddNdSqbbmmdPrwttJVrVPDVrJtHtwPZhrPJ
 BFpFzSSqSFFSvQsnWgCMjTLzng
 DbWVcVRRdlLffvtqjTWNgQ
