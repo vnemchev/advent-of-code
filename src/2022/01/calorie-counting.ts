@@ -1,5 +1,5 @@
-function findCalories(dwarfData) {
-    const dwarfCollection = [];
+function findCalories(dwarfData: string): string {
+    const dwarfCollection: number[] = [];
 
     let dwarfCalories = 0;
     let topThreeCalories = 0;
