@@ -1,4 +1,4 @@
-function cleanup(pairs) {
+function cleanup(pairs: string): number {
     let pairCount = 0;
 
     pairs.split('\n').forEach(p => {
@@ -15,10 +15,10 @@ function cleanup(pairs) {
         }
     });
 
-    console.log(pairCount);
+    return pairCount;
 }
-
-cleanup(`23-33,24-65
+console.log(
+    cleanup(`23-33,24-65
 10-24,23-88
 71-92,18-71
 2-2,10-95
@@ -1017,4 +1017,5 @@ cleanup(`23-33,24-65
 89-99,3-89
 11-65,10-66
 4-52,52-93
-29-31,12-28`);
+29-31,12-28`),
+);
