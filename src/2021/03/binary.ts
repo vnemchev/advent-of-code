@@ -1,4 +1,4 @@
-function binary(input) {
+function binary(input: string): number {
     let binGamma = '';
     let binEpsilon = '';
 
@@ -11,7 +11,7 @@ function binary(input) {
 
     return decGamma * decEpsilon;
 
-    function findMostAndLeastCommon(array) {
+    function findMostAndLeastCommon(array: string[]): void {
         let zeros = 0,
             ones = 0;
 
@@ -33,7 +33,7 @@ function binary(input) {
     }
 }
 
-function createbitGroups(input) {
+function createbitGroups(input: string): string[][] {
     const numbers = input.split('\n');
     const numbersL = numbers.length;
     const numberL = numbers[0].length;
@@ -43,7 +43,7 @@ function createbitGroups(input) {
 
     new Array(numberL).fill([]); */
 
-    const bitGroups = Array.from(Array(numberL), () => new Array());
+    const bitGroups: string[][] = Array.from(Array(numberL), () => new Array());
 
     for (let i = 0; i < numbersL; i++) {
         const number = numbers[i];
