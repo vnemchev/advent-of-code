@@ -1,8 +1,8 @@
-function reorganize(backpacks) {
+function reorganize2(input: string): string {
     const PRIORITIES = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let prioritySum = 0;
 
-    backpacks = backpacks.split('\n');
+    const backpacks = input.split('\n');
 
     while (backpacks.length) {
         const [e1, e2, e3] = backpacks.splice(0, 3);
@@ -19,7 +19,7 @@ function reorganize(backpacks) {
 }
 
 console.log(
-    reorganize(`RCMRQjLLWGTjnlnZwwnZJRZH
+    reorganize2(`RCMRQjLLWGTjnlnZwwnZJRZH
 qnvfhpSbvSppNddNdSqbbmmdPrwttJVrVPDVrJtHtwPZhrPJ
 BFpFzSSqSFFSvQsnWgCMjTLzng
 DbWVcVRRdlLffvtqjTWNgQ
