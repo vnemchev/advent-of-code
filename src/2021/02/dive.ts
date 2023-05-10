@@ -1,22 +1,22 @@
-function dive(input) {
+function dive(input: string): number {
     let hPosition = 0,
         depth = 0,
         aim = 0;
 
     input.split('\n').forEach(r => {
         let [direction, unitCount] = r.split(' ');
-        unitCount = +unitCount;
+        const unitCountNum = Number(unitCount);
 
         switch (direction) {
             case 'up':
-                aim -= unitCount;
+                aim -= unitCountNum;
                 break;
             case 'down':
-                aim += unitCount;
+                aim += unitCountNum;
                 break;
             default:
-                hPosition += unitCount;
-                depth += aim * unitCount;
+                hPosition += unitCountNum;
+                depth += aim * unitCountNum;
                 break;
         }
     });
