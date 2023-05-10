@@ -1,6 +1,8 @@
-function rps(moveData) {
+function rps(moveData: string): string {
     const moveList = moveData.split('\n');
-    const rules = {
+    const rules: {
+        [key: string]: { [key: string]: { [key: string]: number } };
+    } = {
         A: {
             X: { movePoints: 3, roundPoints: 0 },
             Y: { movePoints: 1, roundPoints: 3 },
