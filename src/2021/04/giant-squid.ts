@@ -4,7 +4,7 @@ function giantSquid(input: string) {
         .filter(e => e !== '')
         .map(e => e.trim());
 
-    const numbers = rows.shift()?.split(',');
+    const numbers = rows.shift()?.split(',').map(Number);
 
     console.log(createBoards(rows));
 }
