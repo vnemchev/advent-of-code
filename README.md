@@ -1,21 +1,21 @@
-# Advent Of Code
+# [Advent Of Code](https://adventofcode.com/)
 
-_My goal is to solve all advent of code problems from all years before the 2023 edition starts._
+_My goal is to solve all advent of code problems from all years before the 2023 edition starts. Only fully solved solutions are marked as done._
 
-## 2022
-
-- [x] 01.
-
-## 2021
-
-## 2020
-
-## 2019
-
-## 2018
-
-## 2017
-
-## 2016
-
-## 2015
+### [2022](https://adventofcode.com/)
+- [x] [Day 1: Calorie Counting](https://adventofcode.com/2022/day/1)
+- [x] [Day 2: Rock Paper Scissors](https://adventofcode.com/2022/day/2)
+- [x] [Day 3: Rucksack Reorganization](https://adventofcode.com/2022/day/3)
+- [ ] [Day 4: Camp Cleanup](https://adventofcode.com/2022/day/4)
+- [x] [Day 5: Supply Stacks](https://adventofcode.com/2022/day/5)
+- [x] [Day 6: Tuning Trouble](https://adventofcode.com/2022/day/6)
+### [2021](https://adventofcode.com/2021)
+- [x] Day 1: [Sonar Sweep](https://adventofcode.com/2021/day/1)
+- [x] Day 2: [Dive!](https://adventofcode.com/2021/day/2)
+- [ ] Day 3: [Binary Diagnostic](https://adventofcode.com/2021/day/3)
+### [2020](https://adventofcode.com/2020)
+- [x] Day 1: [Report Repair](https://adventofcode.com/2020/day/1)
+- [x] Day 2: [Password Philosophy](https://adventofcode.com/2020/day/2)
+- [x] Day 3: [Toboggan Trajectory](https://adventofcode.com/2020/day/3)
+- [ ] Day 4: [Passport Processing](https://adventofcode.com/2020/day/4)
+- [ ] Day 5: [Binary Boarding](https://adventofcode.com/2021/2020/5)
