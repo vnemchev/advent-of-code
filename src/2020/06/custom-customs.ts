@@ -1,4 +1,4 @@
-function findAnsweredQs(raw: string) {
+function findAnsweredQs(raw: string): number {
     const groups = raw.split('\n').join(' ').split('  ');
     let answers: string | string[];
     let sumOfYes = 0;
@@ -17,20 +17,21 @@ function findAnsweredQs(raw: string) {
         sumOfYes += firstOccs.length;
     }
 
-    console.log(sumOfYes);
+    return sumOfYes;
 }
 
-function findFirstOccs(answers: string, firstOccs: string[]) {
-    for (const answer of answers) {
-        if (!firstOccs.includes(answer)) {
-            firstOccs.push(answer);
+function findFirstOccs(answers: string, firstOccs: string[]): string[] {
+    answers.split('').forEach(a => {
+        if (!firstOccs.includes(a)) {
+            firstOccs.push(a);
         }
-    }
+    });
 
     return firstOccs;
 }
 
-findAnsweredQs(`obegcmqadtrhui
+console.log(
+    findAnsweredQs(`obegcmqadtrhui
 qbgocuzeimrhdat
 icuagdbztxrqehoy
 cuietqhbfroagds
@@ -2205,4 +2206,5 @@ gvohdnamrskb
 vgck
 gkvc
 cvkg
-vgrckm`);
+vgrckm`),
+);
