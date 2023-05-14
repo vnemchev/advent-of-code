@@ -6,9 +6,23 @@ function giantSquid(input: string) {
 
     const numbers = rows.shift()?.split(',').map(Number);
 
-    console.log(createBoards(rows));
+    const boards = createBoards(rows);
+    const a = playBingo(numbers!, boards);
 }
 
+function playBingo(numbers: number[], boards: number[][][]) {
+    for (const num of numbers) {
+        for (const board of boards) {
+            for (let i = 0; i < board.length; i++) {
+                const row = board[i];
+                if (row.includes(num)) {
+                    board[i][board[i].indexOf(num)] = -1;
+                }
+            }
+        }
+    }
+    return boards;
+}
 function createBoards(rows: string[]): number[][][] {
     const pattern = /[0-9]{1,2}/g;
     const boards: number[][][] = [];
