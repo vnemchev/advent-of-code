@@ -10,9 +10,32 @@ function giantSquid(input: string) {
     const a = playBingo(numbers!, boards);
 }
 
-function playBingo(numbers: number[], boards: number[][][]) {
+function findWinner(board: number[][]) {
+
+    for (const row of board) {
+        const rowSum = row.reduce((sum, num) => {
+            const newSum = sum + num;
+            return newSum;
+        }, 0);
+        if (rowSum === -5) {
+            return 'Winner';
+        }
+    }
+
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            
+        }
+        
+    }
+    // return res;
+}
+
+function playBingo(numbers: number[], boards: number[][][]): number[][][] {
     for (const num of numbers) {
         for (const board of boards) {
+            console.log(findWinner(board));
+
             for (let i = 0; i < board.length; i++) {
                 const row = board[i];
                 if (row.includes(num)) {
