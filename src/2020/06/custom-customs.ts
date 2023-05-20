@@ -1,34 +1,64 @@
+interface ICollection {
+    [index: string]: number;
+}
+
 function findAnsweredQs(raw: string): number {
     const groups = raw.split('\n').join(' ').split('  ');
-    let answers: string | string[];
-    let sumOfYes = 0;
+    let answers: string | string[],
+        fSum = 0,
+        sSum = 0;
 
-    for (const group of groups) {
-        let firstOccs: string[] = [];
-
+    groups.forEach(group => {
+        let collection: ICollection = {};
         if (!group.includes(' ')) {
-            answers = group;
-            firstOccs = findFirstOccs(answers, firstOccs);
+            collection = fillCollection(group, collection);
         } else {
-            group.split(' ').forEach(a => {
-                firstOccs = findFirstOccs(a, firstOccs);
+            const splitGroup = group.split(' ');
+            splitGroup.forEach(a => {
+                collection = fillCollection(a, collection);
+                sSum += getConfirmedByAll(collection, splitGroup.length);
             });
         }
-        sumOfYes += firstOccs.length;
-    }
-
-    return sumOfYes;
-}
-
-function findFirstOccs(answers: string, firstOccs: string[]): string[] {
-    answers.split('').forEach(a => {
-        if (!firstOccs.includes(a)) {
-            firstOccs.push(a);
-        }
+        fSum += getAllKeys(collection);
     });
 
-    return firstOccs;
+    return sSum;
 }
+
+function fillCollection(answers: string, collection: ICollection): ICollection {
+    answers.split('').forEach(a => {
+        if (!collection[a]) collection[a] = 0;
+        collection[a]++;
+    });
+    return collection;
+}
+
+function getAllKeys(collection: ICollection): number {
+    return Object.keys(collection).length;
+}
+
+function getConfirmedByAll(collection: ICollection, groupSize: number): number {
+    const filteredVals = Object.values(collection).filter(v => v == groupSize);
+    return filteredVals.length;
+}
+
+console.log(
+    findAnsweredQs(`abc
+
+a
+b
+c
+
+ab
+ac
+
+a
+a
+a
+a
+
+b`),
+);
 
 console.log(
     findAnsweredQs(`obegcmqadtrhui
