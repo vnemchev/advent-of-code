@@ -19,3 +19,6 @@ _My goal is to solve all advent of code problems from all years before the 2023 
 - [x] Day 3: [Toboggan Trajectory](https://adventofcode.com/2020/day/3)
 - [ ] Day 4: [Passport Processing](https://adventofcode.com/2020/day/4)
 - [ ] Day 5: [Binary Boarding](https://adventofcode.com/2021/2020/5)
+### [2019](https://adventofcode.com/2019)
+- [x] Day 1: [The Tyranny of the Rocket Equation](https://adventofcode.com/2019/day/1)
+- [ ] Day 2: [1202 Program Alarm](https://adventofcode.com/2019/day/2)
