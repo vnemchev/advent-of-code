@@ -6,17 +6,18 @@ function programAlarm(input: string) {
     for (let i = 0; i < intcodeProgram.length; i += 4) {
         const opcode = intcodeProgram[i];
 
-        if (opcode == 99) {
-            break;
-        } else if (opcode == 1 || opcode == 2) {
-            manipulateProg(
-                intcodeProgram,
-                opcode,
-                intcodeProgram[i + 1],
-                intcodeProgram[i + 2],
-                intcodeProgram[i + 3],
-            );
-        }
+        if (opcode == 99) break;
+
+        if (opcode != 1 && opcode != 2)
+            return new Error('Something went wrong!');
+
+        manipulateProg(
+            intcodeProgram,
+            opcode,
+            intcodeProgram[i + 1],
+            intcodeProgram[i + 2],
+            intcodeProgram[i + 3],
+        );
     }
     return intcodeProgram[0];
 }
