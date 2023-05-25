@@ -25,8 +25,6 @@ function rocketTyrrany(input: string): number {
     }
 }
 
-console.log(rocketTyrrany(`100756`));
-
 console.log(
     rocketTyrrany(`147308
 51605
