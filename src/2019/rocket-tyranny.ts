@@ -1,13 +1,32 @@
 function rocketTyrrany(input: string): number {
     const parsed = input.split('\n').map(Number);
+    let currentSum = 0;
     let sum = 0;
 
     parsed.forEach(mass => {
-        sum += Math.floor(mass / 3 - 2);
+        calcFuel(mass)
     });
 
     return sum;
+
+    function calcFuel(fuelMass: number) {
+        const fuelNeeded = Math.floor(fuelMass / 3 - 2);
+
+        currentSum += fuelNeeded;
+
+        const newFuelNeeded = Math.floor(fuelNeeded / 3 - 2);
+
+        if (newFuelNeeded <= 0) {
+            sum += currentSum;
+            return (currentSum = 0);
+        } else {
+            calcFuel(fuelNeeded);
+        }
+    }
 }
+
+console.log(rocketTyrrany(`100756`));
+
 console.log(
     rocketTyrrany(`147308
 51605
