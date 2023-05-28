@@ -1,43 +1,15 @@
-import { IFileTree, IDirectory, IFile } from './interfaces';
+import { IFileTree } from './interfaces';
 
 function main(input: string): void {
-    const mainDir: IFileTree = {
-        directories: {
-            a: {
-                directories: {
-                    e: {
-                        files: { i: { size: 584, parent: 'e' } },
-                        parent: 'a',
-                    },
-                },
-                files: {
-                    f: { size: 29116, parent: 'a' },
-                    g: { size: 2557, parent: 'a' },
-                    'h.lst': { size: 62596, parent: 'a' },
-                },
-                parent: 'a',
-            },
-            d: {
-                files: {
-                    j: { size: 4060174, parent: 'd' },
-                    'd.log': { size: 8033020, parent: 'd' },
-                    'd.ext': { size: 5626152, parent: 'd' },
-                    k: { size: 7214296, parent: 'd' },
-                },
-                parent: 'a',
-            },
-        },
-        files: {
-            'b.txt': {
-                size: 14848514,
-                parent: '/',
-            },
-            'c.dat': {
-                size: 8504156,
-                parent: '/',
-            },
-        },
-    };
+    parseInput(input);
+}
+
+function parseInput(input: string) {
+    input.split('\n').forEach((row, i) => {
+        if (input[0] == '$') {
+        } else {
+        }
+    });
 }
 
 main(`$ cd /
