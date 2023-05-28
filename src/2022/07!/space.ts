@@ -1,60 +1,65 @@
-function main(input) {
-    // const commands = {
-    //     cd: {
-    //         '/': function () {
-    //             if (fileTree['/'] == undefined) {
-    //                 fileTree['/'] = {};
-    //             }
-    //             currentDir = fileTree['/'];
-    //             return currentDir;
-    //         },
-    //         '..': function (prev) {
-    //             currentDir = fileTree[prev];
-    //         },
-    //     },
-    //     ls: {},
-    // };
+interface IFileTree {
+    directories: {
+        [key: string]: IDirectory;
+    };
+    files: {
+        [key: string]: IFile;
+    };
+}
 
-    const fileTree = {};
+interface IDirectory {
+    directories?: {
+        [key: string]: IDirectory;
+    };
+    files?: {
+        [key: string]: IFile;
+    };
+    parent?: string;
+}
 
-    let currentDir = {},
-        prevDirName = '';
+interface IFile {
+    size: number;
+    parent: string;
+}
 
-    input = input.split('\n');
-
-    for (let i = 0; i < input.length; i++) {
-        const line = input[i].split(' ');
-
-        if (line.length === 3) {
-            const [, command, dir] = line;
-
-            navigate(dir);
-        } else {
-        }
-    }
-
-    console.log(fileTree['/']);
-
-    function navigate(dirName) {
-        if (fileTree[dirName] == undefined) {
-            fileTree[dirName] = {};
-        }
-
-        switch (dirName) {
-            case '/':
-                prevDirName = currentDir;
-                currentDir = fileTree[dirName];
-
-                break;
-
-            case '..':
-                break;
-
-            default:
-                break;
-        }
-    }
-    Object.entries(fileTree).forEach(e => console.log(e));
+function main(input: string): void {
+    const mainDir: IFileTree = {
+        directories: {
+            a: {
+                directories: {
+                    e: {
+                        files: { i: { size: 584, parent: 'e' } },
+                        parent: 'a',
+                    },
+                },
+                files: {
+                    f: { size: 29116, parent: 'a' },
+                    g: { size: 2557, parent: 'a' },
+                    'h.lst': { size: 62596, parent: 'a' },
+                },
+                parent: 'a',
+            },
+            d: {
+                files: {
+                    j: { size: 4060174, parent: 'd' },
+                    'd.log': { size: 8033020, parent: 'd' },
+                    'd.ext': { size: 5626152, parent: 'd' },
+                    k: { size: 7214296, parent: 'd' },
+                },
+                parent: 'a',
+            },
+        },
+        files: {
+            'b.txt': {
+                size: 14848514,
+                parent: '/',
+            },
+            'c.dat': {
+                size: 8504156,
+                parent: '/',
+            },
+        },
+    };
 }
 
 main(`$ cd /
