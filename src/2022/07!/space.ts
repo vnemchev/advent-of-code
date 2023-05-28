@@ -2,30 +2,72 @@ import { IFileTree } from './interfaces';
 
 function main(input: string): void {
     const commands = input.split('\n');
-    controller(commands);
+
+    treeCreator(commands);
 }
 
-function controller(commands: string[]) {
+function treeCreator(commands: string[]): IFileTree {
+    const fileTree: IFileTree = {};
+
     commands.forEach((row, i) => {
         if (input[0] == '$') {
             const [dollar, command, dir] = row.split(' ');
             if (command == 'ls') {
-                // Implement listing command
+                // TODO: Implement listing command
             } else if (command == 'cd') {
-                // Implement cd + /     ----> create the object
-                // Implement cd + name  ----> go in a new dir
-                // Implement cd + ..    ----> go back in parent dir
+                // TODO: Implement cd + /     ----> create the object
+                // TODO: Implement cd + name  ----> go in a new dir
+                // TODO: Implement cd + ..    ----> go back in parent dir
             }
         } else {
             const [dirOrFile, name] = row.split(' ');
             if (dirOrFile == 'dir') {
-                // Implement new directory creation
+                // TODO: Implement new directory creation
             } else if (!Number.isNaN(Number(dirOrFile))) {
-                // Implement file creation
+                // TODO: Implement file creation
             }
         }
     });
+
+    return fileTree;
 }
+
+const SKELETON: IFileTree = {
+    directories: {
+        '/': {
+            directories: {
+                a: {
+                    directories: {
+                        e: {
+                            files: { i: { size: 584, parent: 'e' } },
+                            parent: 'a',
+                        },
+                    },
+                    files: {
+                        f: { size: 29116, parent: 'a' },
+                        g: { size: 2557, parent: 'a' },
+                        'h.lst': { size: 62596, parent: 'a' },
+                    },
+                    parent: 'a',
+                },
+                d: {
+                    files: {
+                        j: { size: 4060174, parent: 'd' },
+                        'd.log': { size: 8033020, parent: 'd' },
+                        'd.ext': { size: 5626152, parent: 'd' },
+                        k: { size: 7214296, parent: 'd' },
+                    },
+                    parent: 'a',
+                },
+            },
+        },
+    },
+
+    files: {
+        'b.txt': { size: 14848514, parent: '/' },
+        'c.dat': { size: 8504156, parent: '/' },
+    },
+};
 
 main(`$ cd /
 $ ls

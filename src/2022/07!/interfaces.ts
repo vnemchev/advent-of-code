@@ -1,8 +1,8 @@
 interface IFileTree {
-    directories: {
+    directories?: {
         [key: string]: IDirectory;
     };
-    files: {
+    files?: {
         [key: string]: IFile;
     };
 }
