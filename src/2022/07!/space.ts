@@ -1,26 +1,4 @@
-interface IFileTree {
-    directories: {
-        [key: string]: IDirectory;
-    };
-    files: {
-        [key: string]: IFile;
-    };
-}
-
-interface IDirectory {
-    directories?: {
-        [key: string]: IDirectory;
-    };
-    files?: {
-        [key: string]: IFile;
-    };
-    parent?: string;
-}
-
-interface IFile {
-    size: number;
-    parent: string;
-}
+import { IFileTree, IDirectory, IFile } from './interfaces';
 
 function main(input: string): void {
     const mainDir: IFileTree = {
