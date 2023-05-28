@@ -1,13 +1,28 @@
 import { IFileTree } from './interfaces';
 
 function main(input: string): void {
-    parseInput(input);
+    const commands = input.split('\n');
+    controller(commands);
 }
 
-function parseInput(input: string) {
-    input.split('\n').forEach((row, i) => {
+function controller(commands: string[]) {
+    commands.forEach((row, i) => {
         if (input[0] == '$') {
+            const [dollar, command, dir] = row.split(' ');
+            if (command == 'ls') {
+                // Implement listing command
+            } else if (command == 'cd') {
+                // Implement cd + /     ----> create the object
+                // Implement cd + name  ----> go in a new dir
+                // Implement cd + ..    ----> go back in parent dir
+            }
         } else {
+            const [dirOrFile, name] = row.split(' ');
+            if (dirOrFile == 'dir') {
+                // Implement new directory creation
+            } else if (!Number.isNaN(Number(dirOrFile))) {
+                // Implement file creation
+            }
         }
     });
 }
