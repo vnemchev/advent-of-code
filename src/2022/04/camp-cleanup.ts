@@ -1,22 +1,38 @@
 function cleanup(pairs: string): number {
-    let pairCount = 0;
+    let overlappingPairsCount = 0;
 
-    pairs.split('\n').forEach(p => {
-        const [elf1, elf2] = p.split(',');
+    pairs.split('\n').forEach(pair => {
+        const [elf1, elf2] = pair.split(',');
 
-        const [x1, y1] = elf1.split('-').map(Number);
-        const [x2, y2] = elf2.split('-').map(Number);
+        const [startOne, endOne] = elf1.split('-').map(Number);
+        const [startTwo, endTwo] = elf2.split('-').map(Number);
 
-        const complete = (x1 >= x2 && y1 <= y2) || (x2 >= x1 && y2 <= y1);
-        const partial = (x1 >= x2 && x1 <= y2) || (x2 >= x1 && x2 <= y2);
+        const overlapsCompletely =
+            (startOne >= startTwo && endOne <= endTwo) ||
+            (startTwo >= startOne && endTwo <= endOne);
+            
+        const overlapsPartially = startOne <= endTwo && startTwo <= endOne;
 
-        if (partial) {
-            pairCount++;
-        }
+        if (overlapsPartially || overlapsCompletely) overlappingPairsCount++;
     });
 
-    return pairCount;
+    return overlappingPairsCount;
 }
+
+console.log(
+    cleanup(`2-4,6-8
+2-3,4-5
+5-7,7-9
+2-8,3-7
+6-6,4-6
+2-6,4-8`),
+);
+
+// 5-7,7-9 overlaps in a single section, 7.
+// 2-8,3-7 overlaps all of the sections 3 through 7.
+// 6-6,4-6 overlaps in a single section, 6.
+// 2-6,4-8 overlaps in sections 4, 5, and 6.
+
 console.log(
     cleanup(`23-33,24-65
 10-24,23-88
