@@ -1,6 +1,6 @@
 # [Advent Of Code](https://adventofcode.com/)
 
-_My goal is to solve all advent of code problems from all years before the 2023 edition starts. Only fully solved solutions are marked as done._
+_My goal is to solve all advent of code problems from all years. Checked checkboxes are fully solved problems. Empty checkboxes mean only first part solved._
 
 ### [2022](https://adventofcode.com/)
 - [x] Day 1: [Calorie Counting](https://adventofcode.com/2022/day/1)
