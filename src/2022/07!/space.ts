@@ -1,4 +1,4 @@
-import { IFileTree } from './interfaces';
+import { IFileTree, IDirectory } from './interfaces';
 
 function main(input: string): void {
     const commands = input.split('\n');
@@ -7,14 +7,42 @@ function main(input: string): void {
 }
 
 function treeCreator(commands: string[]): IFileTree {
-    const fileTree: IFileTree = {};
+    const fileTree: IFileTree = {
+        directories: {},
+        files: {},
+    };
+
+    let currentDir = '';
+    let prevDir = '';
 
     commands.forEach((row, i) => {
-        if (input[0] == '$') {
+        if (row[0] == '$') {
             const [dollar, command, dir] = row.split(' ');
             if (command == 'ls') {
                 // TODO: Implement listing command
             } else if (command == 'cd') {
+                if (dir == '/') {
+                    fileTree.directories![dir] = {
+                        directories: {},
+                        files: {},
+                    };
+                    currentDir = dir;
+                } else if (dir == '..') {
+                    currentDir = prevDir;
+                } else {
+                    if (!fileTree.directories!.hasOwnProperty(dir)) {
+                        fileTree.directories![prevDir].directories![dir] = {
+                            directories: {},
+                            parent: currentDir,
+                        };
+                        prevDir = currentDir;
+                        currentDir = dir;
+                    }
+                }
+
+                if (currentDir !== '/') {
+                    fileTree.directories![dir].parent = prevDir;
+                }
                 // TODO: Implement cd + /     ----> create the object
                 // TODO: Implement cd + name  ----> go in a new dir
                 // TODO: Implement cd + ..    ----> go back in parent dir
