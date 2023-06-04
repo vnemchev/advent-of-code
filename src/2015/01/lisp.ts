@@ -1,6 +1,5 @@
 function lisp(input: string): number | undefined {
     let floor = 0,
-        position = 0;
 
     const parsedInput = input.split('');
 
