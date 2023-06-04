@@ -1,15 +1,14 @@
-function lisp(input: string): number | undefined {
-    let floor = 0,
-
+function lisp(input: string): number {
     const parsedInput = input.split('');
+    let floor = 0;
 
     for (let i = 0; i < parsedInput.length; i++) {
         parsedInput[i] == '(' ? floor++ : floor--;
 
-        if (floor < 0) {
-            return i + 1;
-        }
+        if (floor < 0) return i + 1;
     }
+
+    return floor;
 }
 
 console.log(
