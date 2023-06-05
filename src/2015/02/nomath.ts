@@ -1,13 +1,34 @@
 interface IBox {
+    paperNeeded: number;
+    ribbonNeeded: number;
+}
+
+interface IBoxDimensions {
     height: number;
     width: number;
     length: number;
 }
 
-function calculateAllBoxPaper(input: string): number {
-    return createBoxes(input).reduce((acc, box): number => {
-        return acc + calculateBoxPaper(box);
-    }, 0);
+interface IPaperNeeded {
+    paperArea: number;
+    ribbonLength: number;
+}
+
+function getAllPaperNeeded(input: string): string {
+    // return createBoxes(input).reduce((acc, box): number => {
+    //     return acc + createBox(box);
+    // }, 0);
+    const paperNeeded: IPaperNeeded = {
+        paperArea: 0,
+        ribbonLength: 0,
+    };
+
+    createBoxes(input).forEach(box => {
+        paperNeeded.paperArea += box.paperNeeded;
+        paperNeeded.ribbonLength += box.ribbonNeeded;
+    });
+
+    return `${paperNeeded.paperArea} --- ${paperNeeded.ribbonLength}`;
 }
 
 function createBoxes(input: string): IBox[] {
@@ -15,24 +36,39 @@ function createBoxes(input: string): IBox[] {
 
     input.split('\n').map(row => {
         const [height, width, length] = row.split('x').map(Number);
-        boxes.push({ height, width, length });
+        const box = createBox({ height, width, length });
+        boxes.push(box);
     });
 
     return boxes;
 }
 
-function calculateBoxPaper({ height, width, length }: IBox): number {
+function createBox({ height, width, length }: IBoxDimensions): IBox {
+    const box: IBox = {
+        paperNeeded: 0,
+        ribbonNeeded: 0,
+    };
+
     const sideOne = height * length;
     const sideTwo = width * height;
     const sideThree = length * width;
+
+    const smallSides = [height, width, length]
+        .sort((a, b) => a - b)
+        .slice(0, 2);
+
     const boxArea = 2 * (sideOne + sideTwo + sideThree);
-    const slack = Math.min(sideOne, sideTwo, sideThree);
+    const slackLength = Math.min(sideOne, sideTwo, sideThree);
+    const wrapRibbonLength = 2 * (smallSides[0] + smallSides[1]);
+    const bowRibbonLength = height * width * length;
 
-    return boxArea + slack;
+    box.paperNeeded = boxArea + slackLength;
+    box.ribbonNeeded = wrapRibbonLength + bowRibbonLength;
+
+    return box;
 }
-
 console.log(
-    calculateAllBoxPaper(`4x23x21
+    getAllPaperNeeded(`4x23x21
 22x29x19
 11x4x11
 8x10x5
