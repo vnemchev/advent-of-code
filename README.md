@@ -39,4 +39,5 @@ _My goal is to solve all advent of code problems from all years. Checked checkbo
 ### [2015](https://adventofcode.com/2015)
 
 -   [x] Day 1: [Not Quite Lisp](https://adventofcode.com/2015/day/1)
--   [ ] Day 2: [I Was Told There Would Be No Math](https://adventofcode.com/2015/day/2)
+-   [x] Day 2: [I Was Told There Would Be No Math](https://adventofcode.com/2015/day/2)
+-   [ ] Day 5: [Day 5: Doesn't He Have Intern-Elves For This?](https://adventofcode.com/2015/day/5)
