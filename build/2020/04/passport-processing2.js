@@ -15,30 +15,40 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
+var Fields;
+(function (Fields) {
+    Fields["BYR"] = "byr";
+    Fields["IYR"] = "iyr";
+    Fields["EYR"] = "eyr";
+    Fields["HCL"] = "hcl";
+    Fields["ECL"] = "ecl";
+    Fields["PID"] = "pid";
+    Fields["HGT"] = "hgt";
+    Fields["CID"] = "cid";
+})(Fields || (Fields = {}));
 function processor2(input) {
     var passports = input.split('\n\n');
+    var validPassports = [];
     var pattern = /[a-z]{3}:\w*#*\w*/gm;
     var optionalField = 'cid';
     var validPassCount = 0;
     passports.forEach(function (pass) {
-        var _a;
-        var fields = (_a = pass.match(pattern)) === null || _a === void 0 ? void 0 : _a.map(function (r) {
-            var _a = __read(r.split(':'), 2), k = _a[0], v = _a[1];
-            return [k, v];
-        });
-        var validFieldCount = 0;
-        fields === null || fields === void 0 ? void 0 : fields.forEach(function (r) {
-            if (r[0] !== optionalField) {
-                var isFieldValid = validator([r[0], r[1]]);
-                if (isFieldValid)
-                    validFieldCount++;
-            }
-            else {
-                validFieldCount++;
-            }
-        });
-        if (validFieldCount == 8)
-            return ++validPassCount;
+        var passport = {};
+        // const fields = pass.match(pattern)?.map(r => {
+        //     const [k, v] = r.split(':');
+        //     if (passport[k] != undefined) {
+        //     }
+        // });
+        // let validFieldCount = 0;
+        // fields?.forEach(r => {
+        //     if (r[0] !== optionalField) {
+        //         const isFieldValid = validator([r[0], r[1]]);
+        //         if (isFieldValid) validFieldCount++;
+        //     } else {
+        //         validFieldCount++;
+        //     }
+        // });
+        // if (validFieldCount == 8) return ++validPassCount;
     });
     return validPassCount;
 }
@@ -57,6 +67,15 @@ function validator(_a) {
             var eYear = Number(expYear);
             return expYear.length === 4 && eYear >= 2020 && eYear <= 2030;
         },
+        hcl: function (hairColor) {
+            return /#[0-9a-f]{6}/.test(hairColor);
+        },
+        ecl: function (eyeColor) {
+            return /amb|blu|brn|gry|grn|hzl|oth/.test(eyeColor);
+        },
+        pid: function (passID) {
+            return /[0-9]{9}/.test(passID);
+        },
         hgt: function (height) {
             var structureValid = /[0-9]+[in|cm]+/.test(height);
             if (!structureValid)
@@ -67,15 +86,6 @@ function validator(_a) {
                 return numHeight >= 59 && numHeight < 76;
             else
                 return numHeight >= 150 && numHeight < 193;
-        },
-        hcl: function (hairColor) {
-            return /#[0-9a-f]{6}/.test(hairColor);
-        },
-        ecl: function (eyeColor) {
-            return /amb|blu|brn|gry|grn|hzl|oth/.test(eyeColor);
-        },
-        pid: function (passID) {
-            return /[0-9]{9}/.test(passID);
         },
     };
     return requiredFields[key](value);

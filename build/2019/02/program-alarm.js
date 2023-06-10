@@ -4,20 +4,26 @@ function programAlarm(input) {
     editProg(intcodeProgram);
     for (var i = 0; i < intcodeProgram.length; i += 4) {
         var opcode = intcodeProgram[i];
+        var noun = intcodeProgram[i + 1];
+        var verb = intcodeProgram[i + 2];
+        var target = intcodeProgram[i + 3];
         if (opcode == 99)
             break;
         if (opcode != 1 && opcode != 2)
             return new Error('Something went wrong!');
-        manipulateProg(intcodeProgram, opcode, intcodeProgram[i + 1], intcodeProgram[i + 2], intcodeProgram[i + 3]);
+        manipulateProg({ arr: intcodeProgram, opcode: opcode, noun: noun, verb: verb, target: target });
+        var item = intcodeProgram[0];
+        if (intcodeProgram.join('') === '19690720') {
+            return noun;
+        }
     }
     return intcodeProgram[0];
 }
-function manipulateProg(arr, opcode, pos1, pos2, pos3) {
+function manipulateProg(_a) {
+    var arr = _a.arr, opcode = _a.opcode, noun = _a.noun, verb = _a.verb, target = _a.target;
     var result;
-    opcode == 1
-        ? (result = arr[pos1] + arr[pos2])
-        : (result = arr[pos1] * arr[pos2]);
-    arr.splice(pos3, 1, result);
+    opcode == 1 ? (result = noun + verb) : (result = noun * verb);
+    arr.splice(target, 1, result);
 }
 function editProg(arr) {
     arr[1] = 12;
