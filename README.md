@@ -35,6 +35,8 @@ _My goal is to solve all advent of code problems from all years. Checked checkbo
 ### [2017](https://adventofcode.com/2017)
 
 -   [x] Day 1: [Inverse Captcha](https://adventofcode.com/2017/day/1)
+-   [ ] Day 2: [Corruption Checksum](https://adventofcode.com/2017/day/2)
+-   [x] Day 4: [High-Entropy Passphrases](https://adventofcode.com/2017/day/4)
 
 ### [2016](https://adventofcode.com/2016)
 
