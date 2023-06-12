@@ -1,14 +1,24 @@
 function chronalCalibration(input: string): number {
+    const commands = input.split('\n');
     let frequency = 0;
+    const frequencies = [frequency];
 
-    input.split('\n').forEach(r => {
-        const operator = r[0];
-        const value = Number(r.substring(1));
+    return manipulate() || 0;
 
-        operator == '+' ? (frequency += value) : (frequency -= value);
-    });
-    return frequency;
+    function manipulate() {
+        for (const command of commands) {
+            const operator = command[0];
+            const value = Number(command.substring(1));
+            operator == '+' ? (frequency += value) : (frequency -= value);
+
+            if (!frequencies.includes(frequency)) frequencies.push(frequency);
+            else return frequency;
+        }
+        if (new Set(frequencies).size == frequencies.length)
+            return manipulate();
+    }
 }
+
 console.log(
     chronalCalibration(`+1
 -2

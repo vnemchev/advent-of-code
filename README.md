@@ -32,6 +32,8 @@ _My goal is to solve all advent of code problems from all years. Checked checkbo
 
 ### [2018](https://adventofcode.com/2018)
 
+-   [x] Day 1: [Chronal Calibration](https://adventofcode.com/2018/day/1)
+
 ### [2017](https://adventofcode.com/2017)
 
 -   [x] Day 1: [Inverse Captcha](https://adventofcode.com/2017/day/1)
