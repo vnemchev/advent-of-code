@@ -2,17 +2,64 @@ interface Dict {
     [key: string]: number;
 }
 
-function main(input: string) {
+function main(input: string): number | void {
     const pattern = /((\w+-*)+)(\d{3})\[(\w+)\]/;
-    let idSum = 0;
+    let result: number | string = 0;
+
     input.split('\n').forEach(r => {
-        const [, name, , sectorId, checksum] = r.match(pattern) || [];
+        const [s, name, , sectorIdString, checksum] = r.match(pattern) || [];
+        const sectorId = Number(sectorIdString);
         const dictionary = createDict(name.split('-').slice(0, -1).join(''));
         const isValid = evalChecksum(checksum, dictionary);
-        if (isValid) idSum += Number(sectorId);
+        if (isValid) {
+            result = solveCipher(name, sectorId);
+            if (typeof result == 'string') {
+                return result;
+            }
+        }
     });
-    console.log(idSum);
 }
+
+function solveCipher(name: string, sectorId: number) {
+    const searchString = 'northpole object storage';
+    const startString = name.substring(0, name.length - 1);
+    const newStringArr = startString.split('');
+    const newStringArrL = newStringArr.length;
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+    for (let i = 0; i < newStringArrL; i++) {
+        if (newStringArr[i] == '-') {
+            newStringArr[i] = ' ';
+            continue;
+        }
+
+        for (let j = 0; j < sectorId; j++) {
+            if (newStringArr[i] == 'z') {
+                newStringArr[i] = alphabet[0];
+            } else {
+                newStringArr[i] =
+                    alphabet[alphabet.indexOf(newStringArr[i]) + 1];
+            }
+        }
+    }
+
+    return newStringArr.join('') == searchString ? sectorId : 'No match';
+}
+
+// for (let i = 0, j = 0; i < sectorId; i++, j++) {
+//     if (j == newStringArr.length){
+//         console.log(newStringArr[j]);
+
+//         j = 0};
+//     const char = newStringArr[j];
+//     if (char == ' ') continue;
+//     if (char == '-') newStringArr[j] = ' ';
+//     if (char == 'z') {
+//         newStringArr[j] = alphabet[0];
+//     } else {
+//         newStringArr[j] = alphabet[alphabet.indexOf(char) + 1];
+//     }
+// }
 
 function createDict(chars: string): Dict {
     const charsL = chars.length;
@@ -25,7 +72,7 @@ function createDict(chars: string): Dict {
     return dictionary;
 }
 
-function evalChecksum(checksum: string, dictionary: Dict) {
+function evalChecksum(checksum: string, dictionary: Dict): boolean {
     return (
         checksum ===
         Object.entries(dictionary)
@@ -37,8 +84,9 @@ function evalChecksum(checksum: string, dictionary: Dict) {
             .substring(0, 5)
     );
 }
-
-main(`gbc-frperg-pubpbyngr-znantrzrag-377[rgbnp]
+console.log(
+    main(`qzmt-zixmtkozy-ivhz-343[rgbnp]
+gbc-frperg-pubpbyngr-znantrzrag-377[rgbnp]
 nij-mywlyn-wlsiayhcw-jfumncw-alumm-mbcjjcha-422[mcjwa]
 pualyuhapvuhs-ibuuf-zhslz-227[uhalp]
 xlrypetn-prr-lylwjdtd-665[dzoya]
@@ -1128,4 +1176,5 @@ gvcskirmg-ikk-gywxsqiv-wivzmgi-698[rmvil]
 ktwbhtvmbox-ftzgxmbv-vtgwr-ftkdxmbgz-163[tbgmv]
 oxmeeuruqp-omzpk-oamfuzs-efadmsq-716[meoua]
 xjinphzm-bmvyz-hvbizodx-xviyt-xjvodib-ozxcijgjbt-343[ixbjv]
-jyfvnlupj-ibuuf-svnpzapjz-851[gmsnf]`);
+jyfvnlupj-ibuuf-svnpzapjz-851[gmsnf]`),
+);

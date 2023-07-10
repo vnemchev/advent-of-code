@@ -44,7 +44,7 @@ _My goal is to solve all advent of code problems from all years. Checked checkbo
 
 -   [ ] Day 2: [Bathroom Security](https://adventofcode.com/2016/day/2)
 -   [x] Day 3: [Squares With Three Sides](https://adventofcode.com/2016/day/3)
--   [x] Day 3: [Security Through Obscurity](https://adventofcode.com/2016/day/4)
+-   [x] Day 4: [Security Through Obscurity](https://adventofcode.com/2016/day/4)
 
 ### [2015](https://adventofcode.com/2015)
 
