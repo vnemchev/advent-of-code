@@ -42,6 +42,9 @@ _My goal is to solve all advent of code problems from all years. Checked checkbo
 
 ### [2016](https://adventofcode.com/2016)
 
+-   [ ] Day 2: [Bathroom Security](https://adventofcode.com/2016/day/2)
+-   [ ] Day 3: [Squares With Three Sides](https://adventofcode.com/2016/day/3)
+
 ### [2015](https://adventofcode.com/2015)
 
 -   [x] Day 1: [Not Quite Lisp](https://adventofcode.com/2015/day/1)
