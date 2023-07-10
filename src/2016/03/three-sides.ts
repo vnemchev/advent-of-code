@@ -1,14 +1,32 @@
 function main(input: string): number {
     let validCount = 0;
+    const { triangles, triangleCount } = parseInput(input);
+
+    for (let i = 0; i < triangleCount; i += 3) {
+        const [a, b, c] = triangles.slice(i, i + 3);
+        const isValid = checkIfValidTriangle(a, b, c);
+        if (isValid) validCount++;
+    }
+    return validCount;
+}
+
+function parseInput(input: string): {
+    triangles: number[];
+    triangleCount: number;
+} {
+    let columns: number[][] = [[], [], []];
     const pattern = /\S+/g;
 
     input.split('\n').forEach(r => {
         const [a, b, c] = r.match(pattern)?.map(Number) || [];
-        const isValid = checkIfValidTriangle(a, b, c);
-
-        if (isValid) validCount++;
+        columns[0].push(a);
+        columns[1].push(b);
+        columns[2].push(c);
     });
-    return validCount;
+
+    const triangles = columns.flat();
+
+    return { triangles, triangleCount: triangles.length };
 }
 
 function checkIfValidTriangle(a: number, b: number, c: number): boolean {

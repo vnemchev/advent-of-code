@@ -17,15 +17,27 @@ var __read = (this && this.__read) || function (o, n) {
 };
 function main(input) {
     var validCount = 0;
+    var _a = parseInput(input), triangles = _a.triangles, triangleCount = _a.triangleCount;
+    for (var i = 0; i < triangleCount; i += 3) {
+        var _b = __read(triangles.slice(i, i + 3), 3), a_1 = _b[0], b = _b[1], c = _b[2];
+        var isValid_1 = checkIfValidTriangle(a_1, b, c);
+        if (isValid_1)
+            validCount++;
+    }
+    return validCount;
+}
+function parseInput(input) {
+    var columns = [[], [], []];
     var pattern = /\S+/g;
     input.split('\n').forEach(function (r) {
         var _a;
         var _b = __read(((_a = r.match(pattern)) === null || _a === void 0 ? void 0 : _a.map(Number)) || [], 3), a = _b[0], b = _b[1], c = _b[2];
-        var isValid = checkIfValidTriangle(a, b, c);
-        if (isValid)
-            validCount++;
+        columns[0].push(a);
+        columns[1].push(b);
+        columns[2].push(c);
     });
-    return validCount;
+    var triangles = columns.flat();
+    return { triangles: triangles, triangleCount: triangles.length };
 }
 function checkIfValidTriangle(a, b, c) {
     return a + b > c && a + c > b && b + c > a;
