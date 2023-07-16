@@ -29,6 +29,7 @@ _My goal is to solve all advent of code problems from all years. Checked checkbo
 
 -   [x] Day 1: [The Tyranny of the Rocket Equation](https://adventofcode.com/2019/day/1)
 -   [ ] Day 2: [1202 Program Alarm](https://adventofcode.com/2019/day/2)
+-   [ ] Day 8: [Space Image Format](https://adventofcode.com/2019/day/8)
 
 ### [2018](https://adventofcode.com/2018)
 
